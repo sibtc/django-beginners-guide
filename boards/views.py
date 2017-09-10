@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from boards.models import Board
+from .models import Board
 
 
 def home(request):
