@@ -6,7 +6,7 @@
 Code samples from the Django tutorial series.
 
 * [Part 1 - Getting Started](https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html)
-* Part 2 - Fundamentals *comming soon*
+* [Part 2 - Fundamentals](https://simpleisbetterthancomplex.com/series/2017/09/11/a-complete-beginners-guide-to-django-part-2.html)
 * Part 3 - Advanced Concepts *comming soon*
 * Part 4 - Authentication *comming soon*
 * Part 5 - ORM *comming soon*
