@@ -12,7 +12,7 @@ class Board(models.Model):
 
 class Topic(models.Model):
     subject = models.CharField(max_length=255)
-    last_updated = models.DateTimeField()
+    last_updated = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(Board, related_name='topics')
     starter = models.ForeignKey(User, related_name='topics')
 
@@ -23,4 +23,4 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     created_by = models.ForeignKey(User, related_name='posts')
-    updated_by = models.ForeignKey(User, related_name='+')
+    updated_by = models.ForeignKey(User, null=True, related_name='+')
