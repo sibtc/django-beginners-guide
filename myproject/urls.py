@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),\
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(
@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^reset/complete/$',
         auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
         name='password_reset_complete'),
+
+    url(r'^settings/password/$', accounts_views.change_password, name='change_password'),
 
     url(r'^boards/(?P<pk>\d+)/$', views.board_topics, name='board_topics'),
     url(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
