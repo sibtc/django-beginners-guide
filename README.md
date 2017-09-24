@@ -7,6 +7,7 @@ Code samples from the Django tutorial series.
 
 ![Django Boards Screenshot](https://simpleisbetterthancomplex.com/media/series/beginners-guide/1.11/part-4/mainmenu.png)
 
+
 ## Table of Contents
 
 * [Part 1 - Getting Started](https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html)
@@ -18,6 +19,7 @@ Code samples from the Django tutorial series.
 * Part 7 - Deployment *comming soon*
 
 For the complete tutorial series index [click here](https://simpleisbetterthancomplex.com/series/beginners-guide/1.11/).
+
 
 ## Running the Project Locally
 
@@ -46,3 +48,13 @@ python manage.py runserver
 ```
 
 The project will be available at **127.0.0.1:8000**.
+
+
+## License
+
+The source code is released under the [MIT License](https://github.com/sibtc/django-beginners-guide/blob/master/LICENSE).
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+The tutorials, documentations, comics are licensed under the
+[Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
