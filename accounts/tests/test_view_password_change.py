@@ -1,18 +1,17 @@
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
+from django.contrib.auth import views as auth_views
 from django.core.urlresolvers import reverse
 from django.urls import resolve
 from django.test import TestCase
 
-from ..views import change_password
 
-
-class ChangePasswordTests(TestCase):
+class PasswordChangeTests(TestCase):
     def setUp(self):
         username = 'john'
         password = 'secret123'
         user = User.objects.create_user(username=username, email='john@doe.com', password=password)
-        url = reverse('change_password')
+        url = reverse('password_change')
         self.client.login(username=username, password=password)
         self.response = self.client.get(url)
 
@@ -21,7 +20,7 @@ class ChangePasswordTests(TestCase):
 
     def test_url_resolves_correct_view(self):
         view = resolve('/settings/password/')
-        self.assertEquals(view.func, change_password)
+        self.assertEquals(view.func.view_class, auth_views.PasswordChangeView)
 
     def test_csrf(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
@@ -38,27 +37,27 @@ class ChangePasswordTests(TestCase):
         self.assertContains(self.response, 'type="password"', 3)
 
 
-class LoginRequiredChangePasswordTests(TestCase):
+class LoginRequiredPasswordChangeTests(TestCase):
     def test_redirection(self):
-        url = reverse('change_password')
+        url = reverse('password_change')
         login_url = reverse('login')
         response = self.client.get(url)
         self.assertRedirects(response, f'{login_url}?next={url}')
 
 
-class ChangePasswordTestCase(TestCase):
+class PasswordChangeTestCase(TestCase):
     '''
     Base test case for form processing
     accepts a `data` dict to POST to the view.
     '''
     def setUp(self, data={}):
         self.user = User.objects.create_user(username='john', email='john@doe.com', password='old_password')
-        self.url = reverse('change_password')
+        self.url = reverse('password_change')
         self.client.login(username='john', password='old_password')
         self.response = self.client.post(self.url, data)
 
 
-class SuccessfulChangePasswordTests(ChangePasswordTestCase):
+class SuccessfulPasswordChangeTests(PasswordChangeTestCase):
     def setUp(self):
         super().setUp({
             'old_password': 'old_password',
@@ -68,9 +67,9 @@ class SuccessfulChangePasswordTests(ChangePasswordTestCase):
 
     def test_redirection(self):
         '''
-        A valid form submission should redirect the user to the home page
+        A valid form submission should redirect the user
         '''
-        self.assertRedirects(self.response, self.url)
+        self.assertRedirects(self.response, reverse('password_change_done'))
 
     def test_password_changed(self):
         '''
@@ -90,7 +89,7 @@ class SuccessfulChangePasswordTests(ChangePasswordTestCase):
         self.assertTrue(user.is_authenticated)
 
 
-class InvalidChangePasswordTests(ChangePasswordTestCase):
+class InvalidPasswordChangeTests(PasswordChangeTestCase):
     def test_status_code(self):
         '''
         An invalid form submission should return to the same page
