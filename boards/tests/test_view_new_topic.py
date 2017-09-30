@@ -1,11 +1,10 @@
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.urls import resolve
 from django.test import TestCase
+from django.urls import resolve, reverse
 
-from ..views import new_topic
-from ..models import Board, Topic, Post
 from ..forms import NewTopicForm
+from ..models import Board, Post, Topic
+from ..views import new_topic
 
 
 class NewTopicTests(TestCase):

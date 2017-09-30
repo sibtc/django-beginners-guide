@@ -1,9 +1,8 @@
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
-from django.contrib.auth import views as auth_views
-from django.core.urlresolvers import reverse
-from django.urls import resolve
 from django.test import TestCase
+from django.urls import resolve, reverse
 
 
 class PasswordChangeTests(TestCase):

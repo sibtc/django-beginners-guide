@@ -1,9 +1,8 @@
-from django.core.urlresolvers import reverse
-from django.urls import resolve
 from django.test import TestCase
+from django.urls import resolve, reverse
 
-from ..views import board_topics
 from ..models import Board
+from ..views import board_topics
 
 
 class BoardTopicsTests(TestCase):
