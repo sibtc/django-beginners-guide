@@ -1,11 +1,9 @@
 from django.core.urlresolvers import reverse
-from django.contrib.auth.models import User
 from django.urls import resolve
 from django.test import TestCase
 
-from ..views import home, board_topics, new_topic
-from ..models import Board, Topic, Post
-from ..forms import NewTopicForm
+from ..views import home
+from ..models import Board
 
 
 class HomeTests(TestCase):

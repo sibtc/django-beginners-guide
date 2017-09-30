@@ -10,7 +10,7 @@ class PasswordChangeTests(TestCase):
     def setUp(self):
         username = 'john'
         password = 'secret123'
-        user = User.objects.create_user(username=username, email='john@doe.com', password=password)
+        User.objects.create_user(username=username, email='john@doe.com', password=password)
         url = reverse('password_change')
         self.client.login(username=username, password=password)
         self.response = self.client.get(url)
