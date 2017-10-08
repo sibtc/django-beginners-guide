@@ -1,6 +1,16 @@
 {% if is_paginated %}
   <nav aria-label="Topics pagination" class="mb-4">
     <ul class="pagination">
+      {% if page_obj.number > 1 %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1">First</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">First</span>
+        </li>
+      {% endif %}
+
       {% if page_obj.has_previous %}
         <li class="page-item">
           <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -19,7 +29,7 @@
               <span class="sr-only">(current)</span>
             </span>
           </li>
-        {% else %}
+        {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
           <li class="page-item">
             <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
           </li>
@@ -33,6 +43,16 @@
       {% else %}
         <li class="page-item disabled">
           <span class="page-link">Next</span>
+        </li>
+      {% endif %}
+
+      {% if page_obj.number != paginator.num_pages %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Last</span>
         </li>
       {% endif %}
     </ul>

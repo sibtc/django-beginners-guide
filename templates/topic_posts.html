@@ -17,14 +17,14 @@
   </div>
 
   {% for post in posts %}
-    <div class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
+    <div id="{{ post.pk }}" class="card {% if forloop.last %}mb-4{% else %}mb-2{% endif %} {% if forloop.first %}border-dark{% endif %}">
       {% if forloop.first %}
         <div class="card-header text-white bg-dark py-2 px-3">{{ topic.subject }}</div>
       {% endif %}
       <div class="card-body p-3">
         <div class="row">
           <div class="col-2">
-            <img src="{{ user|gravatar }}" alt="{{ post.created_by.username }}" class="w-100 rounded">
+            <img src="{{ post.created_by|gravatar }}" alt="{{ post.created_by.username }}" class="w-100 rounded">
             <small>Posts: {{ post.created_by.posts.count }}</small>
           </div>
           <div class="col-10">
