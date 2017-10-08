@@ -30,7 +30,7 @@
             <small class="text-muted">{{ post.created_at }}</small>
           </div>
         </div>
-        {{ post.message }}
+        {{ post.get_message_as_markdown }}
       </div>
     </div>
   {% endfor %}

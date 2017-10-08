@@ -36,7 +36,7 @@
                 <small class="text-muted">{{ post.created_at }}</small>
               </div>
             </div>
-            {{ post.message }}
+            {{ post.get_message_as_markdown }}
             {% if post.created_by == user %}
               <div class="mt-3">
                 <a href="{% url 'edit_post' post.topic.board.pk post.topic.pk post.pk %}"
