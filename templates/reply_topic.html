@@ -41,7 +41,9 @@
             <small class="text-muted">{{ post.created_at }}</small>
           </div>
         </div>
-        {{ post.get_message_as_markdown }}
+        <div class="post-body">
+          {{ post.get_message_as_markdown }}
+        </div>
       </div>
     </div>
   {% endfor %}
