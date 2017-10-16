@@ -2,7 +2,7 @@
   font-family: 'Peralta', cursive;
 }
 
-.post-body blockquote {
+blockquote {
   border-left: 5px solid rgba(0,0,0,.125);
   padding-left: 1.25rem;
 }
