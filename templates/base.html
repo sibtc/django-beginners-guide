@@ -18,6 +18,17 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Boards</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://simpleisbetterthancomplex.com/series/beginners-guide/1.11/" target="_blank" rel="noopener">Tutorial</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/sibtc/django-beginners-guide" target="_blank" rel="noopener">GitHub</a>
+              </li>
+            </ul>
             {% if user.is_authenticated %}
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
