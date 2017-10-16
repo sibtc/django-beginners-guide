@@ -5,7 +5,7 @@
 
 Code samples from the Django tutorial series.
 
-![Django Boards Screenshot](https://simpleisbetterthancomplex.com/media/series/beginners-guide/1.11/part-4/mainmenu.png)
+![Django Boards Screenshot](https://d26dzxoao6i3hh.cloudfront.net/items/0j1J2s300f1b2y1Y3p3k/django-boards.png?v=3ec9d7f5)
 
 
 ## Table of Contents
