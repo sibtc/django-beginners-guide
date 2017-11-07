@@ -1,9 +1,9 @@
-from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import resolve, reverse
 
 from ..views import UserUpdateView
+from ..forms import UserInformationUpdateForm
 
 
 class MyAccountTestCase(TestCase):
@@ -32,7 +32,7 @@ class MyAccountTests(MyAccountTestCase):
 
     def test_contains_form(self):
         form = self.response.context['form']
-        self.assertIsInstance(form, ModelForm)
+        self.assertIsInstance(form, UserInformationUpdateForm)
 
     def test_form_inputs(self):
         '''
