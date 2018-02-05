@@ -1,10 +1,10 @@
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import UpdateView, ListView
 from django.utils import timezone
-from django.utils.decorators import method_decorator
 from django.urls import reverse
 
 from .forms import NewTopicForm, PostForm
@@ -102,8 +102,7 @@ def reply_topic(request, pk, topic_pk):
     return render(request, 'reply_topic.html', {'topic': topic, 'form': form})
 
 
-@method_decorator(login_required, name='dispatch')
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ('message', )
     template_name = 'edit_post.html'
