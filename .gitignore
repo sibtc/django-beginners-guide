@@ -100,3 +100,6 @@ ENV/
 .mypy_cache/
 
 *.sqlite3
+
+.pytest_cache/
+pip-selfcheck.json
