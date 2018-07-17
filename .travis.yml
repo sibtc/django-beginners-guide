@@ -2,4 +2,4 @@
   python:
     - "3.6"
   script:
-    - pytest
+    - "./.travis.run.sh"
