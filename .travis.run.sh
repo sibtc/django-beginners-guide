@@ -4,4 +4,6 @@ cp .env.example .env
 
 python manage.py migrate
 
-pytest --ds=myproject.settings
+pytest --cov=boards --cov=accounts  --ds=myproject.settings
+
+coveralls 
