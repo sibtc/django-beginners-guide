@@ -29,3 +29,19 @@ class UserUpdateView(UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+def unused_func(request):
+    if request.user.pk == 0:
+        return request.user
+    if request.user.pk == 1:
+        return request.user
+    if request.user.pk == 2:
+        return request.user
+    if request.user.pk == 3:
+        return request.user
+    if request.user.pk == 4:
+        return request.user
+    if request.user.pk == 5:
+        return request.user
+
