@@ -30,7 +30,7 @@ git clone git@github.com:sibtc/django-beginners-guide.git
 ```
 
 Install the requirements:
-
+nnn
 ```bash
 pip install -r requirements.txt
 ```
