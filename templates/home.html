@@ -1,7 +1,4 @@
 {% extends 'base.html' %}
-
-{% load humanize %}
-
 {% block breadcrumb %}
   <li class="breadcrumb-item active">Boards</li>
 {% endblock %}
@@ -32,16 +29,16 @@
           <td class="align-middle">
             {% with post=board.get_last_post %}
               {% if post %}
-                <small>
-                  <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
-                    By {{ post.created_by.username }} {{ post.created_at|naturaltime }}
-                  </a>
-                </small>
-              {% else %}
-                <small class="text-muted">
-                  <em>No posts yet.</em>
-                </small>
-              {% endif %}
+			    <small>
+			      <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
+			        By {{ post.created_by.username }} at {{ post.created_at }}
+			      </a>
+			    </small>
+			  {% else %}
+			    <small class="text-muted">
+			      <em>No posts yet.</em>
+			    </small>
+			  {% endif %}
             {% endwith %}
           </td>
         </tr>

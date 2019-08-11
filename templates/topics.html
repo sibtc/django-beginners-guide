@@ -1,22 +1,21 @@
 {% extends 'base.html' %}
 
 {% load humanize %}
-
+ 
 {% block title %}
   {{ board.name }} - {{ block.super }}
 {% endblock %}
-
+ 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
   <li class="breadcrumb-item active">{{ board.name }}</li>
 {% endblock %}
-
+ 
 {% block content %}
-  <div class="mb-4">
-    <a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
-  </div>
-
-  <table class="table table-striped mb-4">
+	<div class="mb-4">
+    	<a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
+  	</div>
+    <table class="table">
     <thead class="thead-inverse">
       <tr>
         <th>Topic</th>
@@ -52,7 +51,7 @@
       {% endfor %}
     </tbody>
   </table>
-
+  
   {% include 'includes/pagination.html' %}
 
 {% endblock %}
