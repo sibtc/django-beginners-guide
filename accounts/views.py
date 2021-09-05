@@ -6,13 +6,15 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView
 
+from myproject.utils import recaptcha_is_valid
+
 from .forms import SignUpForm, UserInformationUpdateForm
 
 
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and recaptcha_is_valid(request):
             user = form.save()
             auth_login(request, user)
             return redirect('home')

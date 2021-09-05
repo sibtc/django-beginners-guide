@@ -1,11 +1,14 @@
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import UpdateView, ListView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.urls import reverse
+
+from myproject.utils import recaptcha_is_valid
 
 from .forms import NewTopicForm, PostForm
 from .models import Board, Post, Topic
@@ -59,7 +62,7 @@ def new_topic(request, pk):
     board = get_object_or_404(Board, pk=pk)
     if request.method == 'POST':
         form = NewTopicForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and recaptcha_is_valid(request):
             topic = form.save(commit=False)
             topic.board = board
             topic.starter = request.user
@@ -80,7 +83,7 @@ def reply_topic(request, pk, topic_pk):
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
     if request.method == 'POST':
         form = PostForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and recaptcha_is_valid(request):
             post = form.save(commit=False)
             post.topic = topic
             post.created_by = request.user

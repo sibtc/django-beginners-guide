@@ -2,16 +2,31 @@
 
 {% block title %}Sign up to Django Boards{% endblock %}
 
+{% block javascript %}
+  {% if recaptcha_enabled %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+     function onSubmit(token) {
+       document.getElementById("signUpForm").submit();
+     }
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10 col-sm-12">
       <div class="card">
         <div class="card-body">
           <h3 class="card-title">Sign up</h3>
-          <form method="post" novalidate>
+          <form method="post" id="signUpForm" novalidate>
             {% csrf_token %}
             {% include 'includes/form.html' %}
-            <button type="submit" class="btn btn-primary btn-block">Create an account</button>
+            {% if recaptcha_enabled %}
+              <button class="g-recaptcha btn btn-primary btn-block" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit'>Create an account</button>
+            {% else %}
+              <button type="submit" class="btn btn-primary btn-block">Create an account</button>
+            {% endif %}
           </form>
         </div>
         <div class="card-footer text-muted text-center">

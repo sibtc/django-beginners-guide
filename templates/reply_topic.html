@@ -9,6 +9,14 @@
 {% endblock %}
 
 {% block javascript %}
+  {% if recaptcha_enabled %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+     function onSubmit(token) {
+       document.getElementById("replyTopicForm").submit();
+     }
+    </script>
+  {% endif %}
   <script src="{% static 'js/simplemde.min.js' %}"></script>
   <script>
     var simplemde = new SimpleMDE();
@@ -24,10 +32,14 @@
 
 {% block content %}
 
-  <form method="post" class="mb-4" novalidate>
+  <form method="post" id="replyTopicForm" class="mb-4" novalidate>
     {% csrf_token %}
     {% include 'includes/form.html' %}
-    <button type="submit" class="btn btn-success">Post a reply</button>
+    {% if recaptcha_enabled %}
+      <button class="g-recaptcha btn btn-success" data-sitekey="{{ recaptcha_site_key }}" data-callback='onSubmit'>Post a reply</button>
+    {% else %}
+      <button type="submit" class="btn btn-success">Post a reply</button>
+    {% endif %}
   </form>
 
   {% for post in topic.get_last_ten_posts %}
